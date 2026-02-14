@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송영주 | 웹 명함</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0f1419;
+      --bg-card: #1a2332;
+      --accent: #e85d4c;
+      --accent-light: #ff7b6b;
+      --accent-gold: #d4a853;
+      --text-primary: #f0f2f5;
+      --text-muted: #8b9cad;
+      --border: rgba(232, 93, 76, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg-deep);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 93, 76, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(212, 168, 83, 0.08), transparent);
+      color: var(--text-primary);
+      padding: 24px;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px 36px;
+      border: 1px solid var(--border);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      overflow: hidden;
+      animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+      opacity: 0.9;
+    }
+
+    .header {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a3544 0%, #1a2332 100%);
+      border: 3px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .avatar svg {
+      width: 90%;
+      height: 90%;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, #fff 0%, #d4a853 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .intro {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      background: rgba(232, 93, 76, 0.12);
+      color: var(--accent-light);
+      border-radius: 20px;
+      border: 1px solid rgba(232, 93, 76, 0.25);
+      font-weight: 500;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item:hover {
+      color: var(--accent-light);
+    }
+
+    .contact-item.youtube-btn:hover {
+      color: #ff0000;
+    }
+
+    .contact-item svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      opacity: 0.7;
+    }
+
+    .contact-item span {
+      word-break: break-all;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 32px 24px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .tags {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- 어깨/상체 - 강인한 실루엣 -->
+          <path d="M15 75 L25 55 Q50 48 75 55 L85 75 Z" fill="#1e2a38" stroke="#2d3d4e" stroke-width="1.5"/>
+          <!-- 머리 - 각진 턱선 (강인함) -->
+          <path d="M25 38 L35 28 L65 28 L75 38 L78 58 Q75 72 65 78 L35 78 Q25 72 22 58 Z" fill="#d4a078" stroke="#b88860" stroke-width="1.5"/>
+          <!-- 헬멧 - 소방관 (멋진 느낌) -->
+          <path d="M22 42 Q50 22 78 42 L76 52 Q50 62 24 52 Z" fill="#2a3544" stroke="#e85d4c" stroke-width="1.2"/>
+          <path d="M28 45 Q50 32 72 45" stroke="#3d4a5c" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="38" r="3" fill="#e85d4c" opacity="0.8"/>
+          <!-- 눈썹 - 날카롭고 강인하게 (살짝 찡그림) -->
+          <path d="M30 42 L38 39 L46 42" stroke="#4a3528" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M54 42 L62 39 L70 42" stroke="#4a3528" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- 눈 - 집중된 시선 -->
+          <path d="M34 48 L42 48" stroke="#2d1f15" stroke-width="3" stroke-linecap="round"/>
+          <path d="M58 48 L66 48" stroke="#2d1f15" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="36" cy="48" r="1.5" fill="#fff"/>
+          <circle cx="64" cy="48" r="1.5" fill="#fff"/>
+          <!-- 코 - 날카로운 인중 -->
+          <path d="M50 52 L52 60" stroke="#b88860" stroke-width="2" stroke-linecap="round"/>
+          <!-- 입 - 단호한 일직선 -->
+          <path d="M42 66 L58 66" stroke="#a07050" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="info">
+        <h1 class="name">송영주</h1>
+        <p class="title">서울소방GPT 동호회 총무</p>
+        <p class="intro">AI로 세상을 바꿀 사람 함께합시다.</p>
+      </div>
+    </div>
+
+    <div class="tags">
+      <span class="tag">운전담당</span>
+      <span class="tag">바리톤</span>
+      <span class="tag">투자자</span>
+      <span class="tag">AI전문가</span>
+    </div>
+
+    <div class="contact">
+      <a href="mailto:zylunt@naver.com" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>zylunt@naver.com</span>
+      </a>
+      <a href="tel:010-9065-8266" class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>010-9065-8266</span>
+      </a>
+      <a href="http://www.youtube.com/@ai-study" target="_blank" rel="noopener noreferrer" class="contact-item youtube-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        <span>YouTube 채널</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // 카드 호버 시 부드러운 그림자 효과
+    const card = document.querySelector('.card');
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const tiltX = (y - 0.5) * 8;
+      const tiltY = (x - 0.5) * -8;
+      card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  </script>
+</body>
+</html>
